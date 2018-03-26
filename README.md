@@ -39,7 +39,7 @@ DOMContentLoaded：渲染完成即可执行，此时图片、视频可能没有�
 ```javascript
     //未缓存 DOM 查询
     var i; 
-    for(i = 0; i < document.getElementsByTagName('p').length; i++) {
+    for(i = 0; i < document.getElementsByTagName('p').length; i++) {  //做十次dom查询
         //todo
     }
 
@@ -47,10 +47,37 @@ DOMContentLoaded：渲染完成即可执行，此时图片、视频可能没有�
     //缓存了 DOM 查询  
     var pList = document.getElementsByTagName('p');
     var i;
-    for(i = 0; i < pList.length; i++) {
+    for(i = 0; i < pList.length; i++) {  、、只做一次dom查询
         //todo
     }
 ```   
-        4）减少DOM操作，多个操作尽量合并在一起执行    
-        5）事件节流    
+        4）减少DOM操作，多个操作尽量合并在一起执行   
+```javascript
+    var listNode = document.getElementById('list');
+
+    //要插入10个li标签
+    var frag = document.createDocumentFragment();
+    var x, li;
+    for(x = 0; x < 10; x++) {
+        li = document.createElement('li');
+        li.innerHTML = 'List item ' + x;
+        frag.appendChild(li); 
+    }
+
+    listNode.appendChild(frag);
+```   
+        5）事件节流
+```javascript
+    var textarea = document.getElementById('text');
+    var timeoutId;
+    textarea.addEventListener('keyup', function() {
+        if(timeoutId) {
+            clearTimeout(timeoutId);
+        }
+
+        timeoutId = setTimeout(function() {
+            //触发change事件
+        }, 100)
+    })
+```    
         6）尽量执行操作(DOMContentLoaded)    
