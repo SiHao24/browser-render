@@ -81,3 +81,30 @@ DOMContentLoaded：渲染完成即可执行，此时图片、视频可能没有�
     })
 ```    
         6）尽量执行操作(DOMContentLoaded)    
+```javascript
+    window.addEventListener('load' function() {
+        //页面的全部资源加载完成后才会执行，包括图片、视频等
+    })
+
+    window.addEventListener('DOMContentLoaded', function() {
+        //DOM 渲染完即可执行，此时图片、视频可能没有加载完成
+    })
+```  
+## 安全性
+1. XSS跨站请求攻击  
+2. CSRF跨站请求伪造  
+### XSS(跨站脚本攻击 Cascading Style Sheets)   
+在新浪博客写一篇文章，同事偷偷插入一段<script>   
+攻击代码中，获取cookie，发送自己的服务器
+发布博客，有人查看博客内容   
+会把查看者的cookie发送到攻击者的服务器
+### 预防
+前端替换关键字，例如替换为<为&lt;>为&gt;
+后端替换
+### CSRF(Cross-site request forgery)  
+你已登录一个购物网站，正在浏览商品   
+改网站付费链接是xxx.com/pay?id=100但是没有任何验证  
+然后你收到一个邮件，隐藏着<img src=xxx.xom/>pay?id=100>  
+你查看邮件的时候，就已经悄悄地付费购买了。
+### 解决方案：
+增加验证流程，如输入指纹，密码，短信验证。
