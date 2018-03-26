@@ -37,7 +37,19 @@ DOMContentLoaded：渲染完成即可执行，此时图片、视频可能没有�
 ```    
         3）减少DOM查询，对DOM查询做缓存   
 ```javascript
-    
+    //未缓存 DOM 查询
+    var i; 
+    for(i = 0; i < document.getElementsByTagName('p').length; i++) {
+        //todo
+    }
+
+
+    //缓存了 DOM 查询  
+    var pList = document.getElementsByTagName('p');
+    var i;
+    for(i = 0; i < pList.length; i++) {
+        //todo
+    }
 ```   
         4）减少DOM操作，多个操作尽量合并在一起执行    
         5）事件节流    
