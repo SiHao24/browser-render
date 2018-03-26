@@ -27,8 +27,18 @@ DOMContentLoaded：渲染完成即可执行，此时图片、视频可能没有�
     4）使用SSR后端渲染，数据直接输出到HTML中(server side render服务端渲染 Vue React提出的概念) jsp、php、asp都属于后端渲染   
     渲染优化    
         1）CSS放前面，JS放后面    
-        2）懒加载(图片懒加载，下拉加载更多)    
-        3）减少DOM查询，对DOM查询做缓存    
+        2）懒加载(图片懒加载，下拉加载更多)
+```html
+    <img id="img1" src="preview.png" data-realsrc="abc.png"/>>
+```   
+```javascript
+    var img1 = document.getElementById('img1');
+    img1.src = img1.getAttribute('data-realsrc');
+```    
+        3）减少DOM查询，对DOM查询做缓存   
+```javascript
+    
+```   
         4）减少DOM操作，多个操作尽量合并在一起执行    
         5）事件节流    
         6）尽量执行操作(DOMContentLoaded)    
